@@ -1,0 +1,53 @@
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    min-width: 330px;
+    min-height: 85vh;
+    border: 2px solid whitesmoke;
+    background-color: white;
+    border-radius: 30px;
+    margin: 7vh auto;
+    gap: 0.7rem;
+}
+
+.app-title {
+    text-align: center;
+    font-size: 1rem;
+    color:rgb(58, 57, 57);
+    margin-top: 1rem;
+}
+
+/* Botones del Componente SocialButton */
+.social-networks {
+    width: 60%;
+    display: flex;
+    justify-content:space-around;
+}
+
+form {
+    width: 20rem;
+
+}
+
+form button {
+    width: 100%;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 1.5vh  0;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+input:focus {
+    outline: 2px solid green;
+}
