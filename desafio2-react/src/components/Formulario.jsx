@@ -11,6 +11,11 @@ const Formulario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (name === '' || email === '' || password === '' || confirmPassword ==='') {
+      setAlert({ type: 'alert alert-danger', message: 'Todos los campos son obligatorios' });
+      return;
+    }
+
     if (password !== confirmPassword) {
       setAlert({ type: 'alert alert-danger', message: 'Las contraseñas no coinciden' });
       return;
