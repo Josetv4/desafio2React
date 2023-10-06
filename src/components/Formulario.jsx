@@ -1,33 +1,46 @@
 import { useState } from 'react';
 import Alert from './Alert';
 
-const Formulario = () => {
+const Formulario = ({ handleRegistro, confirmation, message }) => {
+  
+  
+   
+
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (name === '' || email === '' || password === '' || confirmPassword ==='' ) {
 
-    if (name === '' || email === '' || password === '' || confirmPassword ==='') {
-      setAlert({ type: 'alert alert-danger', message: 'Todos los campos son obligatorios' });
+      handleRegistro(2)
+      setAlert(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      setAlert({ type: 'alert alert-danger', message: 'Las contraseñas no coinciden' });
+      handleRegistro(3)
+      setAlert(true);
       return;
     }
 
     if (!validateEmail(email)) {
-      setAlert({ type: 'alert alert-danger', message: 'El correo electrónico no tiene el formato correcto' });
+      handleRegistro(4)
+      setAlert(true);
       return;
     }
 
-    setAlert({ type: 'alert alert-success', message: 'Formulario enviado con éxito' });
+    handleRegistro(1)
+    setAlert(true);
+    
   };
+
+
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,9 +48,10 @@ const Formulario = () => {
   };
 
   return (
+    <>
     <div>
       <form onSubmit={handleSubmit}>
-        <label for='name'>
+        <label htmlFor='name'>
           <input
             id='name'
             autoFocus
@@ -47,7 +61,7 @@ const Formulario = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        <label for='email'>
+        <label htmlFor='email'>
           <input
             id='email'
             placeholder='ejemplo@correo.com'
@@ -56,7 +70,7 @@ const Formulario = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <label for='new-password'>
+        <label htmlFor='new-password'>
           <input
             id='new-password'
             placeholder='Contraseña'
@@ -65,7 +79,7 @@ const Formulario = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <label for='confirm-password'>
+        <label htmlFor='confirm-password'>
           <input
             id='confirm-password'
             placeholder='Confirmar Contraseña'
@@ -74,10 +88,13 @@ const Formulario = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </label>
-        <button type="submit" class="btn btn-success">Registrar</button>
-        {alert && <Alert type={alert.type} message={alert.message} />}
+        <button type="submit" className="btn btn-success">Registrar</button>
+      
       </form>
+
+      {alert ? <Alert type={confirmation} message={message} /> :null}
     </div>
+    </>
   );
 };
 
