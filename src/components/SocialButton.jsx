@@ -1,15 +1,10 @@
-import PropTypes from 'prop-types';
 
-const SocialButton = ({ id, url, icon }) => {
-    SocialButton.propTypes = {
-        id: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-        icon: PropTypes.string.isRequired,
-     
-      };
+
+const SocialButton = ({  url, icon }) => {
+
       
     return (
-        <div className="socialButton" id={id}   target="_blank">
+        <div className="socialButton"  target="_blank">
             <a
 
                 href={url}
